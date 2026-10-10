@@ -68,3 +68,9 @@ requirements depend on reference evapotranspiration and local conditions.
 Consult [FAO-56](https://www.fao.org/4/X0490E/X0490E00.htm) and local extension
 services before making planting decisions. The automatic mode classification
 likewise uses stated peak-prominence and dry-month heuristics.
+
+## Mini-Project 5: Taxi Route Revenue, Pricing & Fleet Planner
+
+The route model and forecasts are implemented in [src/taxi_planner.py](./src/taxi_planner.py), with tests in [tests/test_taxi_planner.py](./tests/test_taxi_planner.py) and the complete analysis in [taxi_planner_analysis.ipynb](./taxi_planner_analysis.ipynb). It reports revenue and sample descriptive statistics, solves the Ntinda supply-demand equations with `scipy.linalg.solve`, compares moving-average, tuned simple-exponential-smoothing, and linear-trend forecasts using rolling-origin days 4-10, forecasts day-11 revenue, and rounds fleet capacity up after a 15% buffer. Its seeded 60-day extension compares seasonal-naive and 3-day moving-average forecasts.
+
+The equilibrium model gives a fare of UGX 2,200 and 76 passengers per trip-hour; the stated UGX 2,000 fare is below that illustrative equilibrium. Forecast demand and fleet needs rely on just ten observations, and the fleet calculation assumes 8 fully usable one-way trips of 14 occupied seats per vehicle per day. The extension is synthetic and only demonstrates a weekly seasonal pattern; it is not observed taxi demand.
