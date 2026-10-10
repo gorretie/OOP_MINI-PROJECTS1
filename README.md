@@ -36,3 +36,35 @@ and charts are in [lake_victoria_fishery.ipynb](./lake_victoria_fishery.ipynb).
 The values are illustrative rather than Lake Victoria field data. In particular,
 the CV thresholds are example cooperative risk-policy bands, and the price-walk
 volatility is an explicit modeling assumption.
+
+## Mini-Project 4: Rainfall Pattern & Crop Suitability Analyser
+
+The implementation is in [src/rainfall.py](./src/rainfall.py), with tests in
+[tests/test_rainfall.py](./tests/test_rainfall.py) and the complete analysis in
+[rainfall_analysis.ipynb](./rainfall_analysis.ipynb). It includes validated
+`Region` and `CropRule` classes, crop-screen labels for every month, NumPy
+cosine similarity (verified against SciPy), pairwise cosine/Pearson/Euclidean
+matrices, circular rainy-season peak detection, and rainfall, suitability, and
+year-to-year variability plots.
+
+The notebook retains the assignment's illustrative Kampala, Gulu, and Mbarara
+series for the core comparison. The extension uses ten complete years of NASA
+POWER monthly `PRECTOTCORR` estimates (2015-2024), saved in
+[data/rainfall_power_2015_2024.csv](./data/rainfall_power_2015_2024.csv).
+Locations use NASA POWER's point grid nearest the city coordinates. Its monthly
+precipitation values are mean mm/day; the CSV converts them to monthly totals
+by multiplying by calendar days. The request coordinates are Kampala
+(0.3476, 32.5825), Gulu (2.7746, 32.2990), and Mbarara (-0.6072, 30.6545).
+These MERRA-2 reanalysis estimates are not rain-gauge measurements. See the
+[NASA POWER Monthly API documentation](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/).
+
+The default monthly screening bands are maize 80-200 mm, beans 50-150 mm, and
+coffee 60-180 mm. These broad, analyst-selected demonstration bands are informed
+by crop water needs and growth-stage guidance; the specific monthly cutoffs are
+not published FAO thresholds. FAO Irrigation and Drainage Paper 56 describes
+stage-specific crop coefficients and growth periods (including East African
+maize-grain and dry-bean examples in Table 11); it also explains that water
+requirements depend on reference evapotranspiration and local conditions.
+Consult [FAO-56](https://www.fao.org/4/X0490E/X0490E00.htm) and local extension
+services before making planting decisions. The automatic mode classification
+likewise uses stated peak-prominence and dry-month heuristics.
