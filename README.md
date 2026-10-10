@@ -22,3 +22,17 @@ Install the project requirements and run the tests from the repository root:
 python -m pip install -r requirements.txt
 python -m pytest -q
 ```
+
+## Mini-Project 3: Lake Victoria Fish Stock & Export Risk Model
+
+The Jinja fishery model uses a weekly discrete logistic stock equation with
+proportional harvesting, a seeded bounded price random walk, revenue statistics,
+CV-based risk classes, and Monte Carlo downside VaR. It also compares harvest
+rates with the weekly MSY and models an eight-week closed season over five years.
+The implementation is in [src/fish_stock.py](./src/fish_stock.py), tests are in
+[tests/test_fish_stock.py](./tests/test_fish_stock.py), and the complete analysis
+and charts are in [lake_victoria_fishery.ipynb](./lake_victoria_fishery.ipynb).
+
+The values are illustrative rather than Lake Victoria field data. In particular,
+the CV thresholds are example cooperative risk-policy bands, and the price-walk
+volatility is an explicit modeling assumption.
